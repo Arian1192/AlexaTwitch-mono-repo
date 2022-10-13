@@ -1,0 +1,26 @@
+{
+  "name": "alexatwitch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "start:producer": "node ./apps/Alexa-Producer/index.js",
+    "start:consumer": "node ./apps/TwitchBot-Consumer/index.js",
+    "start:both": "concurrently --kill-others-on-fail \"npm run start:producer\" \"npm run start:consumer\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "avsc": "^5.7.5",
+    "dotenv": "^16.0.3",
+    "node-rdkafka": "^2.13.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0",
+    "nodemon": "^2.0.20"
+  }
+}

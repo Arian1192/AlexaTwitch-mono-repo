@@ -2,22 +2,29 @@ const Kafka = require('node-rdkafka');
 const { client } = require("tmi.js");
 const consumer = Kafka.KafkaConsumer({
     'group.id': 'kafka',
-    'metadata.broker.list': 'localhost:9092'
+    'metadata.broker.list': 'localhost:9092',
+    'enable.auto.commit': false
 }, {});
 
 
-const ConsumerConnection = (topic, handler, client) => {
-    consumer.connect();
-    consumer.on('ready', function () {
-        console.log(`${topic} Consumer ready.`) // we can start consuming messages
-        consumer.subscribe([topic]) // subscribe to the topic 'slowmode'
-        consumer.consume() // start consuming messages
-    }).on('data', (data) => { 
-        const message = JSON.parse(data.value);
-        console.log(message) // deserialize the message 
-        handler(message, client);
+const ConsumerConnection = async (topic, handler, client) => {
+    await consumer.connect();
+    await consumer.on('ready',
+           await function () {
+                console.log(`${topic} Consumer ready.`)
+                consumer.subscribe([topic])
+                consumer.consume()
+            }).on('data', (data) => {
+            const message =  JSON.parse(data.value);
+            console.log(message) // deserialize the message
+            handler(message, client);
     });
 }
 
-module.exports = { ConsumerConnection }
+//TODO: Investigar por que solo se ejecuta el ultimo consumer Seguramente hay que crear una nueva instancia
+// de consumer por cada topic que se quiera consumir
 
+
+
+
+module.exports = { ConsumerConnection }

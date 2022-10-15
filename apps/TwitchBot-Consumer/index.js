@@ -17,7 +17,7 @@ const client = new tmi.Client({
 console.log('Conectando al canal de Twitch...');
 client.connect();
 //------------------ requerimos los modulos --------------------
-require('./src/Commands/command')(client);  // -> Importamos el archivo command.js
-require('./src/Chat/Emotes/emotes')(client); // -> Importamos el archivo emotes.js
+/*require('./src/Commands/command')(client);*/  // -> Importamos el archivo command.js
 require('./src/Chat/SlowMode/slowMode')(client); // -> Importamos el archivo slowMode.js
+require('./src/Chat/Emotes/emotes')(client); // -> Importamos el archivo emotes.js
 require('./src/Chat/Subs/subs')(client); // -> Importamos el archivo subs.js

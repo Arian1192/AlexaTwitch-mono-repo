@@ -1,7 +1,7 @@
 const express = require('express');
 const ngrok = require('ngrok');
 require('dotenv').config();
-const kafka = require('node-rdkafka');
+const kafka = require('kafkajs');
 
 const app = express();
 const port = process.env.PORT || 3000;

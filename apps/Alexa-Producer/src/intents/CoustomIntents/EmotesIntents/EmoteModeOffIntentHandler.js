@@ -1,22 +1,33 @@
-const Kafka = require('node-rdkafka');
+const { Kafka } = require('kafkajs')
 
-const stream = Kafka.Producer.createWriteStream({
-    'metadata.broker.list': 'localhost:9092'
-}, {}, { 'topic': 'emotes' });
+const kafka = new Kafka({
+    clientId: 'AlexaTwitch',
+    brokers: ['localhost:9092']
+})
+
+const producer = kafka.producer({groupId: 'emotes'})
 
 const EmoteModeOffIntentHandler = {
-    canHandle(handlerInput) {
+    canHandle(handlerInput)
+    {
         const { request } = handlerInput.requestEnvelope;
         return request.type === 'IntentRequest' && request.intent.name === 'EmoteModeOffIntent';
     },
-    handle(handlerInput) {
-        const speechText = 'Anfis por favor, quita el modo emotes.';
-        const success = stream.write(Buffer.from(JSON.stringify('emoteonlyoff')));
+    async handle(handlerInput)
+    {
+        await producer.connect()
+        await producer.send({
+            topic: 'emotes',
+            messages: [
+                { value: 'emoteonlyoff' },
+            ],
+        })
+        await producer.disconnect()
+        const speechText = 'Anfis por favor, desactiva el modo emotes.';
         return (
             handlerInput.responseBuilder.speak(speechText).reprompt('Hello world', speechText).getResponse()
         );
     }
-
 }
 
 module.exports = { EmoteModeOffIntentHandler };

@@ -1,12 +1,16 @@
-const { client } = require("tmi.js");
+// const { client } = require("tmi.js");
 require('dotenv').config();
+
 const ChannelEmoteHandler = (string, client) => {
     const message = string
     console.log(`Este es el mensaje que esta llegando ${message}`)
     switch (message) {
         case 'emoteonly':
             client.emoteonly(`${process.env.TWITCH_USERNAME}`)
-                .then((data) => console.log(`${process.env.TWITCH_USERNAME} esta en modo emotes`))
+                .then((data) => {
+                    console.log(data)
+                    console.log(`${process.env.TWITCH_USERNAME} esta en modo emotes`)
+                })
                 .catch((err) => console.log(err))
             break;
         case 'emoteonlyoff':

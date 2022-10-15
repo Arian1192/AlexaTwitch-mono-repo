@@ -20,4 +20,5 @@ client.connect();
 /*require('./src/Commands/command')(client);*/  // -> Importamos el archivo command.js
 require('./src/Chat/SlowMode/slowMode')(client); // -> Importamos el archivo slowMode.js
 require('./src/Chat/Emotes/emotes')(client); // -> Importamos el archivo emotes.js
-require('./src/Chat/Subs/subs')(client); // -> Importamos el archivo subs.js
+require('./src/Chat/Subs/subs')(client);// -> Importamos el archivo subs.js
+require('./src/Chat/Followers/followers')(client);// -> Importamos el archivo followers.js

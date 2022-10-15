@@ -18,7 +18,7 @@ const FollowersModeOffIntent = {
     {
         await producer.connect();
         await producer.send({
-            topic: 'followersmode',
+            topic: 'followers',
             messages: [
                 { value: 'followersonlyoff' },
             ],

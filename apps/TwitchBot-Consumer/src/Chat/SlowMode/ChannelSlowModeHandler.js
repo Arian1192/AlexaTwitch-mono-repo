@@ -1,4 +1,4 @@
-const { client } = require("tmi.js");
+const { client } = require('tmi.js');
 require('dotenv').config();
 
 const ChannelSlowModeHandler = (string, client) =>{

@@ -12,7 +12,8 @@ const SubsModeOnIntentHandler = {
         const {request} = handlerInput.requestEnvelope
         return request.type === 'IntentRequest' && request.intent.name === 'SubsModeOnIntent'
     },
-    async handle(handlerInput) {
+    async handle(handlerInput)
+    {
         await producer.connect()
         await producer.send({
             topic: 'subsmode',

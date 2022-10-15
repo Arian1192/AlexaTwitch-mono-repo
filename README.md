@@ -1,5 +1,5 @@
 # AlexaTwitch
-## Skill de alexa para bot de twitch
+## Skill de Alexa para bot de Twitch
 
 
 Este Repositorio es un proyecto de crecimiento personal, en los que voy a usar tecnologias como por ejemplo Kafka para comunicar una serie de microservicios

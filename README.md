@@ -7,7 +7,7 @@ La idea de este proyecto es utilizar una skill de Alexa, el asistente personal m
 
 ## Tech
 
-Dillinger uses a number of open source projects to work properly:
+AlexaTwitch usa estas tecnologias:
 
 - [Kakfka] - Como tecnologia para transmision de mensajes tipo publish subscribe
 - [Docker] - Para levantar una imagen de Kafka y Zookeeper
@@ -15,12 +15,7 @@ Dillinger uses a number of open source projects to work properly:
 - [Express] - El framework mas usado para aplicaciones node.js
 
 
-And of course Dillinger itself is open source with a [public repository][dill]
- on GitHub.
-
-## Installation
-
-Install the dependencies and devDependencies and start the server.
+## Instalación 
 
 ```sh
 cd AlexaTwitch-mono-repo

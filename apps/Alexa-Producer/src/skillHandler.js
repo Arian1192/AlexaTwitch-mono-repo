@@ -2,8 +2,8 @@ const Alexa = require('ask-sdk-core');
 
 const { SessionEndedRequest, HelpIntent, CancelAndStopIntentHandler, UnhandledIntent } = require('./intents/AmazonIntents/AmazonIntents');
 const { LaunchRequest } = require('./intents/LaunchIntent');
-const { EmoteModeOnIntentHandler } = require('../src/intents/CoustomIntents/EmotesIntents/EmoteModeOnIntentHandler');
-const { EmoteModeOffIntentHandler } = require('./intents/CoustomIntents/EmotesIntents/EmoteModeOffIntentHandler')
+const { EmoteModeOnIntentHandler } = require('./intents/CoustomIntents/EmotesIntents/EmoteModeOnIntentHandler');
+const { EmoteModeOffIntentHandler } = require('./intents/CoustomIntents/EmotesIntents/EmoteModeOffIntentHandler');
 const { SlowModeOnIntentHandler } = require('./intents/CoustomIntents/SlowModeIntents/SlowModeOnIntentHandler');
 const { SlowModeOffIntentHandler } = require('./intents/CoustomIntents/SlowModeIntents/SlowModeOffIntentHandler');
 const { SubsModeOnIntentHandler } = require('./intents/CoustomIntents/SubsModeIntents/SubsModeOnIntentHandler');

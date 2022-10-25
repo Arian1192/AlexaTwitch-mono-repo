@@ -21,9 +21,6 @@ const ConsumerConnection = async (topic, handler, client) => {
     });
 }
 
-//TODO: Investigar por que solo se ejecuta el ultimo consumer Seguramente hay que crear una nueva instancia
-// de consumer por cada topic que se quiera consumir
-
 
 
 

@@ -1,23 +1,13 @@
-const { client } = require('tmi.js');
 require('dotenv').config();
+const { SetClientCommand } = require('../../../utils/SetClientCommand')
+const { CommandOptions } = require('../../../utils/CommandOptions')
 
 const ChannelSlowModeHandler = (string, client) =>{
-    const message = string
-    console.log(message)
-    switch (message) {
-        case 'slow':
-            client.slow(`${process.env.TWITCH_USERNAME}`, 120)
-                .then((data) => console.log(`${process.env.TWITCH_USERNAME} esta en modo lento`))
-                .catch((err) => console.log(err))
-            break;
-        case 'slowoff':
-            client.slowoff(`${process.env.TWITCH_USERNAME}`)
-                .then((data) => console.log(`${process.env.TWITCH_USERNAME} ya no esta en modo lento`))
-                .catch((err) => console.log(err))
-            break;
-        default:
-            console.log(`no se ha podido cambiar el modo lento el comando introducido ha sido ${message}`)
-            break;
+    const command = string
+    if (command === CommandOptions.slow) SetClientCommand(client, command)
+    if (command === CommandOptions.slowoff) SetClientCommand(client, command)
+    if (command !== CommandOptions.slow && command !== CommandOptions.slowoff){
+        console.log(`El comando introducido no es valido, el comando introducido ha sido ${command}`)
     }
 }
 

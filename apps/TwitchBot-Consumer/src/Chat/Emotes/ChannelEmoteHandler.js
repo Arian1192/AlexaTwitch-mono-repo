@@ -1,26 +1,13 @@
-// const { client } = require("tmi.js");
 require('dotenv').config();
+const { SetClientCommand } = require("../../../utils/SetClientCommand")
+const { CommandOptions } = require("../../../utils/CommandOptions")
 
 const ChannelEmoteHandler = (string, client) => {
-    const message = string
-    console.log(`Este es el mensaje que esta llegando ${message}`)
-    switch (message) {
-        case 'emoteonly':
-            client.emoteonly(`${process.env.TWITCH_USERNAME}`)
-                .then((data) => {
-                    console.log(data)
-                    console.log(`${process.env.TWITCH_USERNAME} esta en modo emotes`)
-                })
-                .catch((err) => console.log(err))
-            break;
-        case 'emoteonlyoff':
-            client.emoteonlyoff(`${process.env.TWITCH_USERNAME}`)
-                .then((data) => console.log(`${process.env.TWITCH_USERNAME} ya no esta en modo emotes`))
-                .catch((err) => console.log(err))
-            break;
-        default:
-            console.log(`no se ha podido cambiar el modo emotes el comando introducido ha sido ${message}`)
-            break;
+    const command = string
+    if(command === CommandOptions.emoteonly) SetClientCommand(client, command)
+    if (command === CommandOptions.emoteonlyoff) SetClientCommand(client, command)
+    if (command !== CommandOptions.emoteonly && command !== CommandOptions.emoteonlyoff){
+        console.log(`El comando introducido no es valido, el comando introducido ha sido ${command}`)
     }
 }
 

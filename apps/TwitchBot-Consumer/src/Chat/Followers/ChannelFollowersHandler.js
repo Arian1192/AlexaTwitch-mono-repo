@@ -1,23 +1,13 @@
-const { client } = require('tmi.js');
 require('dotenv').config();
+const { SetClientCommand } = require('../../../utils/SetClientCommand')
+const { CommandOptions } = require('../../../utils/CommandOptions')
 
-const ChannelFollowersHandler = (string, client) =>{
-    const message = string
-    console.log(message)
-    switch (message) {
-        case 'followersonly':
-            client.followersonly(`${process.env.TWITCH_USERNAME}`, 120)
-                .then((data) => console.log(`${process.env.TWITCH_USERNAME} esta en modo de seguidores`))
-                .catch((err) => console.log(err))
-            break;
-        case 'followersonlyoff':
-            client.followersonlyoff(`${process.env.TWITCH_USERNAME}`)
-                .then((data) => console.log(`${process.env.TWITCH_USERNAME} ya no esta en modo de seguidores`))
-                .catch((err) => console.log(err))
-            break;
-        default:
-            console.log(`no se ha podido cambiar el modo de seguidores el comando introducido ha sido ${message}`)
-            break;
+const ChannelFollowersHandler = (string, client) => {
+    const command = string
+    if (command === CommandOptions.followersonly) SetClientCommand(client, command)
+    if (command === CommandOptions.followersonlyoff) SetClientCommand(client, command)
+    if (command !== CommandOptions.followersonly && command !== CommandOptions.followersonlyoff){
+        console.log(`El comando introducido no es valido, el comando introducido ha sido ${command}`)
     }
 }
 
